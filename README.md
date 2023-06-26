@@ -1,46 +1,57 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 도서 검색 사이트 구현 
+1. [도서검색 사이트] 구현
+    - [리스트], [상세] 2개의 화면을 가진다.
+    - [리스트] 화면에서 결과값 중 하나를 선택하면 세부정보를 보여주는 [상세] 화면을
+    보여준다
+2.요구사항
+    1. next.js 으로 구현
+    2. typescript, react (cra) 를 사용하여 개발한다.
+    3. github issues를 사용하여 이슈 관리한다.
+    4. 테스트 코드 작성
+3. 세부 구현 내용
+    1. [리스트]특정 키워드에 대해 검색된 서적 정보를 보여준다.
+        - JSON으로 받은 데이터 중 다음 프로퍼티를 필수로 화면에 보여주어야한다.
+            
+            ```json
+            {
+                "title": "MongoDB in Action, 2nd Edition",
+                "subtitle": "Covers MongoDB version 3.0",
+                "image": "https://itbook.store/img/books/9781617291609.png",
+                "url": "https://itbook.store/books/9781617291609"
+            }
+            ```
+            
+        - 무한 스크롤이 될 수 있게 한다.
+        - 특정 키워드를 입력받을 수 있도록 한다. 키워드는 최대 2개이고 ‘or’ 와 ‘not’ operator로
+        구분된다.
+            - ‘or(|)’ operator는 각각의 키워드로 검색한 결과를 합쳐서 보여준다. (e.g. ‘tdd|javascript’ : tdd로 검색한 결과와 jvascript으로 검색한 결과를 합쳐서 보여준다.)
+            - ‘not(-)’ operator는 앞의 키워드가 제목에 포함된 서적을 검색하되 뒤의 키워드가 포함되지
+            않은 서적들을 보여준다. (e.g. ‘tdd-javascript’ : tdd가 제목에 포함된 서적을 검색하되
+            javascript라는 키워드를 가지고 있는 서적은 제외한다.)
+    2. [상세]: 서적 리스트 중 선택된 서적의 상세 정보를 보여준다.
+        - JSON으로 받은 데이터 중 다음 프로퍼티를 필수로 화면에 보여주어야한다.
+        
+        ```json
+        {
+        	"title":"MongoDB in Action, 2nd Edition",
+        	"subtitle":"Covers MongoDB version 3.0",
+        	"authors":"Kyle Banker, Peter Bakkum, Shaun Verch, Douglas Garrett, Tim Hawkins",
+        	"publisher":"Manning",
+        	"pages":"480",
+        	"rating":"4",
+        	"desc":"MongoDB in Action, 2nd Edition is a completely revised and updated version. It introduces MongoDB 3.0 and the document-oriented database model. This perfectly paced book gives you both the big picture you'll need as a developer and enough low-level detail to satisfy system engineers.MongoDB in ...",
+        	"price":"$19.99",
+        	"image":"https://itbook.store/img/books/9781617291609.png",
+        }
+        ```
+        
 
-## Available Scripts
+## API
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- API documents
+    - https://api.itbook.store/
+- 도서 리스트 및 검색
+    - `https://api.itbook.store/1.0/search/{keyword}/{pageNumber}`
+- 도서 상세
+    - `https://api.itbook.store/1.0/books/{isbn13}`
