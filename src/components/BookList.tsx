@@ -11,7 +11,7 @@ type BookListProps = {
   books: Book[];
 };
 
-const BookList: React.FC<BookListProps> = ({ books }) => {
+const BookList = ({ books }: BookListProps) => {
   return (
     <ul>
       {books.map((book) => (
@@ -27,5 +27,4 @@ const BookList: React.FC<BookListProps> = ({ books }) => {
     </ul>
   );
 };
-
 export default BookList;
