@@ -12,22 +12,24 @@ type BookDetailProps = {
   image: string;
 };
 
-const BookDetail: React.FC<BookDetailProps> = ({
-  title,
-  subtitle,
-  authors,
-  publisher,
-  pages,
-  rating,
-  desc,
-  price,
-  image,
-}) => {
+const BookDetail = (props: BookDetailProps) => {
+  const {
+    title,
+    subtitle,
+    authors,
+    publisher,
+    pages,
+    rating,
+    desc,
+    price,
+    image,
+  } = props;
+
   return (
     <div>
       <h1>{title}</h1>
       <h2>{subtitle}</h2>
-      <p>Authors: {authors}</p>
+      <p>Authors: {authors.join(', ')}</p>
       <p>Publisher: {publisher}</p>
       <p>Pages: {pages}</p>
       <p>Rating: {rating}</p>
